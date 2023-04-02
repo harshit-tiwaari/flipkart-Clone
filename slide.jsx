@@ -2,7 +2,8 @@
 import Carousel from "react-multi-carousel"
 import 'react-multi-carousel/lib/styles.css';
 import Countdown from 'react-countdown'
-import {Box,Typography,Button,Divider,styled} from '@mui/material'
+import { Box, Typography, Button, Divider, styled } from '@mui/material'
+import {Link} from 'react-router-dom'
  const responsive = { //responsive is here a prop
   
   desktop: {
@@ -38,7 +39,7 @@ const DealText = styled(Typography)`
  font-size:22px;
  font-weight:600;
  margin-right:25px;
- line-height: 32px;
+ line-height: 55px;
 `
 const ViewAllButton = styled(Button)`
  margin-left:auto;
@@ -67,7 +68,7 @@ const Slide = ({ products,title,timer }) => {
   return (
     <Component>
       <Deal>
-        <DealText>{title}</DealText>
+        <DealText>{ title}</DealText>
         {
           timer &&
           <Timer>
@@ -94,12 +95,14 @@ const Slide = ({ products,title,timer }) => {
       >
       {
           products?.map(product => ( //.map is used to loop
+            <Link to={`product/${product.id}`} style={{textDecoration:'none'}}> 
          <Box textAlign="center" style={{padding:'25px 15px'}}>
               <Image src={product.url} alt="product" />
               <Text style={{fontweight:600,color:'#212121'}}>{ product.title.shortTitle}</Text>
               <Text style={{color:'green'}}>{product.discount}</Text>
               <Text style={{color:'#212121',opacity:'0.6'}}>{ product.tagline}</Text>
-          </Box>
+              </Box>
+              </Link>
         )
 
         )
